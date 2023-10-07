@@ -12,17 +12,17 @@ async function bootstrap() {
   app.enableCors()
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
-  app.setGlobalPrefix('/api')
+  app.setGlobalPrefix('/api/v1')
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true })) //TODO: Fixing Pipe Issue
   const config = new DocumentBuilder()
-    .setTitle('Plan Grid APIs')
-    .setDescription('Plan Grid APIs')
+    .setTitle('Power Tech Apis')
+    .setDescription('Power Tech Apis')
     .setVersion('0.0.1')
     .build()
 
   const document = SwaggerModule.createDocument(app, config)
   app.use(morgan('dev'))
   SwaggerModule.setup('/api-docs', app, document)
-  await app.listen(8084)
+  await app.listen(8089)
 }
 bootstrap()
